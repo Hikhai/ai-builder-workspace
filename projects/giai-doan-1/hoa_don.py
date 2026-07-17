@@ -1,8 +1,13 @@
+import sys
 def dinh_dang_tien(tien):
     return "{:,.0f}".format(tien).replace(",", ".") + " VNĐ"
 
-so_luong_ly = int(input("Nhập số lượng ly: "))
-gia_ly = float(input("Nhập giá mỗi ly: "))
+try:
+    so_luong_ly = int(input("Nhập số lượng ly: "))
+    gia_ly = float(input("Nhập giá mỗi ly: "))
+except ValueError:
+    print("Vui lòng nhập số hợp lệ.")
+    sys.exit()
 
 tong_tien = so_luong_ly * gia_ly
 

@@ -14,5 +14,11 @@
 - Đang mơ hồ: chưa có gì nổi bật ở phần này
 - Việc tiếp theo: buổi 2 — xử lý lỗi cơ bản (try/except), hoặc luyện thêm biến/kiểu dữ liệu nếu muốn chắc hơn trước khi qua bài mới
 
+### Buổi 2 — Xử lý lỗi cơ bản (try/except)
+- Đã hoàn thành: học try/except, áp dụng vào hoa_don.py để không crash khi nhập sai dữ liệu
+- Làm đúng ngay từ lần đầu: chỉ bọc try quanh đúng phần rủi ro (input), không bọc luôn phần tính toán/in kết quả
+- Đang mơ hồ: chưa có gì nổi bật
+- Việc tiếp theo: buổi 3 — hàm (function), hoặc luyện thêm try/except nếu muốn chắc hơn
+
 ---
 *Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*
