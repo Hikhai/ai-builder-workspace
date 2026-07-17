@@ -33,6 +33,7 @@
        principles.md
        roadmap.md
        progress.md
+       knowledge.md
      projects/
        giai-doan-1/
        giai-doan-2/

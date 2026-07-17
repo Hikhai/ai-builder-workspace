@@ -4,17 +4,15 @@
 
 ## Trạng thái hiện tại
 
-- **Giai đoạn:** Giai đoạn 1 — chưa bắt đầu học thật, vừa chốt xong lộ trình chi tiết
-- **Việc tiếp theo:** Buổi học đầu tiên — Biến, kiểu dữ liệu, input/output (áp dụng quy trình 6 bước ở quy mô mini)
+- **Giai đoạn:** Giai đoạn 1
 
 ## Lịch sử
 
-### Buổi thiết kế lại workspace
-- Đã hoàn thành: review và làm lại toàn bộ workspace, thống nhất mục tiêu "AI-assisted engineer", chốt cách giải quyết vấn đề memory bằng bộ file workspace, chốt cấu trúc 1 repo duy nhất (không tách repo cho từng bài)
-- Đã thử nghiệm cách AI dạy (Ticket 1.1-1.4) — chỉ là demo, chưa tính là học thật
-- Phản hồi quan trọng: nhịp dạy demo quá nhanh (dồn nhiều khái niệm, chuyển ticket sớm, thiếu luyện tập) → đã chỉnh nguyên tắc "nhịp học đi theo thực tế", thêm quy trình 6 bước (Ý tưởng → Spec → Thiết kế → Xây dựng → Kiểm thử & Review → Hoàn thiện & Ghi lại) vào mọi bài tập/dự án
-- Đang mơ hồ: chưa có gì (đã rõ hướng đi)
-- Việc tiếp theo: bắt đầu buổi học thật đầu tiên của Giai đoạn 1, đi chậm, từng khái niệm một
+### Buổi 1 — Biến & kiểu dữ liệu
+- Đã hoàn thành: học biến/kiểu dữ liệu cơ bản (int, float, str, bool), làm bài "Hóa đơn cà phê" theo đủ quy trình 6 bước
+- Tự phát hiện và sửa 1 bug thật (biến format tính sai thời điểm — không tự cập nhật khi giá trị gốc đổi sau đó), giải quyết bằng cách tự vận dụng hàm dù chưa học chính thức
+- Đang mơ hồ: chưa có gì nổi bật ở phần này
+- Việc tiếp theo: buổi 2 — xử lý lỗi cơ bản (try/except), hoặc luyện thêm biến/kiểu dữ liệu nếu muốn chắc hơn trước khi qua bài mới
 
 ---
 *Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*
