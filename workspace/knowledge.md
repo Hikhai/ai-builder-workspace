@@ -26,5 +26,12 @@
 - Python đọc hết các `def` trong file trước khi chạy code chính → thứ tự định nghĩa hàm trong file không quan trọng, miễn lúc *gọi* hàm thì hàm cần dùng đã được định nghĩa xong
 - **Dead code:** đoạn code không đường nào dẫn tới được (vd sau `return`/`sys.exit()` trong cùng nhánh). Không gây lỗi nhưng gây rối người đọc — nên xóa hẳn, đừng để "code không bao giờ chạy" tồn tại trong file
 - Tách hàm theo nguyên tắc mỗi hàm làm đúng 1 việc (nhập / tính / hiển thị) giúp code dễ đọc, dễ sửa từng phần
+
+## Git: Branch, Pull Request, đọc diff
+
+- `git checkout -b ten-nhanh` tạo + chuyển nhánh; làm việc trên nhánh riêng, không commit thẳng vào main
+- PR cho xem diff: dòng `+` xanh = thêm, `-` đỏ = xóa — đọc diff trước khi merge là thói quen bắt buộc
+- **Trước khi tạo branch mới: luôn `git status` (đảm bảo không còn gì chưa commit) và `git log --oneline -3` (xác nhận đang đứng đúng chỗ)** — quên bước này khiến các buổi học bị dồn chung vào 1 commit, làm sai lệch lịch sử
+- Code không mất khi quên commit kịp thời (miễn sau đó có push), nhưng lịch sử git sẽ không phản ánh đúng quá trình làm việc thật
 ---
 *Mỗi khái niệm mới thêm vào cuối phần giai đoạn tương ứng, không xóa cái cũ — đây là kho kiến thức tích lũy dần, dùng để ôn lại khi quên.*

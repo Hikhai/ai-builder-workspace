@@ -27,5 +27,11 @@
 - Đang mơ hồ: chưa có gì nổi bật
 - Việc tiếp theo: buổi 4 — Git/GitHub cơ bản (commit, branch, PR, đọc diff) — đây là khái niệm cuối của Giai đoạn 1
 
+### Buổi 4 — Branch, Pull Request, đọc diff (hoàn thành Giai đoạn 1)
+- Đã hoàn thành: học branch/PR/diff, thêm tính năng loại đồ uống qua nhánh riêng + merge PR
+- Phát hiện lỗi quy trình thật: quên commit+push buổi 3 trước khi tạo nhánh mới, khiến buổi 3 và 4 bị dồn chung 1 commit — tự dùng git log để chẩn đoán đúng nguyên nhân
+- Thói quen mới thêm: chạy git status + git log --oneline -3 trước khi tạo branch mới
+- Việc tiếp theo: Giai đoạn 2 — spec-driven, làm việc chuyên nghiệp với AI coding agent
+
 ---
 *Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*
