@@ -33,5 +33,11 @@
 - Thói quen mới thêm: chạy git status + git log --oneline -3 trước khi tạo branch mới
 - Việc tiếp theo: Giai đoạn 2 — spec-driven, làm việc chuyên nghiệp với AI coding agent
 
+### Giai đoạn 2 — Spec-driven: Trình theo dõi ứng tuyển việc làm
+- Đã hoàn thành: viết spec đầy đủ 5 phần qua 3 vòng chỉnh sửa (từ ý tưởng ảo tưởng "tự động cào tin tuyển dụng" thu hẹp về đúng MVP), AI đề xuất kế hoạch code từng bước, review diff từng hàm trước khi ghép
+- Xây xong: doc_du_lieu/ghi_du_lieu (CSV, đường dẫn tuyệt đối), hien_thi_danh_sach, them_moi (validate từng ô độc lập), xoa_dong (validate STT), menu (vòng lặp while sống tới khi thoát)
+- Phát hiện & tự sửa bug thật: đường dẫn tương đối khiến CSV bị tạo sai thư mục khi chạy script từ nơi khác
+- Đang mơ hồ: chưa có gì nổi bật
+- Việc tiếp theo: Giai đoạn 3 — LLM API & tích hợp tool
 ---
 *Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*

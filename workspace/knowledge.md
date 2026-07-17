@@ -33,5 +33,35 @@
 - PR cho xem diff: dòng `+` xanh = thêm, `-` đỏ = xóa — đọc diff trước khi merge là thói quen bắt buộc
 - **Trước khi tạo branch mới: luôn `git status` (đảm bảo không còn gì chưa commit) và `git log --oneline -3` (xác nhận đang đứng đúng chỗ)** — quên bước này khiến các buổi học bị dồn chung vào 1 commit, làm sai lệch lịch sử
 - Code không mất khi quên commit kịp thời (miễn sau đó có push), nhưng lịch sử git sẽ không phản ánh đúng quá trình làm việc thật
+
+## Spec là gì và vì sao quan trọng
+
+**Spec (đặc tả)** là bản mô tả bằng chữ, viết ra *trước khi code*, nói rõ: chương trình này làm gì, nhận vào gì, trả ra gì, xử lý ra sao trong mọi tình huống. Giống như bản vẽ thiết kế nhà trước khi xây, hoặc tờ order rõ ràng trước khi vào bếp nấu — không phải vừa nấu vừa đoán khách muốn gì.
+
+**Vì sao cần, dù chỉ 1 mình làm:** Nếu không viết ra, đầu óc sẽ tự lấp đầy chỗ trống bằng giả định — và giả định của bạn lúc 9h sáng có thể khác giả định lúc 3h chiều. Còn khi nhờ AI code hộ, AI *chỉ biết đúng những gì bạn viết ra* — không viết rõ, AI sẽ tự đoán thay, và đoán của AI chưa chắc đúng ý bạn (giống việc bạn từng viết "lọc bài chất lượng" — AI/con người đều không biết "chất lượng" nghĩa là gì nếu không có tiêu chí cụ thể).
+
+**5 phần, áp dụng vào ví dụ Trình theo dõi ứng tuyển vừa làm xong:**
+
+1. **Mục tiêu** — vấn đề gì, cho ai. *(Lưu lại các nơi đã nộp CV — cho chính bạn dùng)*
+2. **Input/Output** — dữ liệu vào ra chính xác kiểu gì, định dạng gì. *(Vào: tên công ty, link, lương, trạng thái. Ra: bảng hiển thị + file CSV lưu lâu dài)*
+3. **Quy tắc nghiệp vụ** — logic xử lý chính. *(Xem danh sách / thêm mới / xóa theo STT)*
+4. **Trường hợp biên & lỗi** — liệt kê từng tình huống bất thường và cách xử lý, càng cụ thể càng tốt. *(Lương âm → báo lỗi cụ thể "không được âm", không phải chung chung "xử lý lỗi nhập sai")*
+5. **Tiêu chí hoàn thành** — sao biết là xong đúng, phải đo được. *(Thêm 3 dòng, tắt mở lại vẫn còn — không phải "chạy không lỗi" chung chung)*
+
+**Sai lầm hay gặp nhất — chính bạn đã gặp:** bỏ sót hoặc viết mơ hồ phần 4. Lần đầu viết spec, bạn chỉ ghi "xử lý các lỗi về bài tuyển dụng" — nghe hợp lý nhưng không đủ để biết phải code gì. Phải cụ thể tới mức: *sai ở trường nào, giá trị gì được coi là sai, xử lý ra sao (báo lỗi rồi dừng, hay báo lỗi rồi cho nhập lại)*. Thiếu sự cụ thể này, dù bạn tự code hay để AI code, đều phải tự đoán — và đoán thì dễ sai.
+
+**Spec không cần đúng ngay từ lần đầu.** Bạn viết spec này qua 3 vòng sửa (từ ý tưởng quá rộng "tự động cào tin tuyển dụng" → thu hẹp đúng MVP "tự ghi lại CV đã nộp") — đó là quy trình bình thường, không phải thất bại. Viết ra được rồi mới thấy chỗ chưa hợp lý để sửa; nghĩ trong đầu thì không bao giờ tự lộ ra lỗ hổng.
+
+## Viết spec chuyên nghiệp (5 phần)
+Mục tiêu / Input-Output / Quy tắc nghiệp vụ / Trường hợp biên & lỗi / Tiêu chí hoàn thành. Phần "trường hợp biên" hay bị bỏ sót nhất — cần liệt kê cụ thể theo từng trường dữ liệu, không viết chung chung ("xử lý lỗi nhập sai" mơ hồ, "lương âm/chữ → báo lỗi, cho nhập lại" mới đủ rõ để code theo).
+
+## Đọc file bằng đường dẫn tuyệt đối
+`os.path.dirname(os.path.abspath(__file__))` lấy thư mục chứa script hiện tại, ghép với `os.path.join()` — để file dữ liệu luôn nằm đúng chỗ bất kể chạy lệnh từ thư mục nào. Đường dẫn tương đối (`"ten_file.csv"`) phụ thuộc vào *nơi đứng khi chạy lệnh*, không phải nơi chứa file `.py`.
+
+## Validate từng ô độc lập trong 1 form
+Mỗi ô có hàm nhập riêng, tự lặp `while True` tới khi đúng mới `return` — sai ô nào chỉ ô đó hỏi lại, giữ nguyên các ô đã nhập đúng trước đó. Tránh gộp chung validate cả form vào 1 khối, vì sẽ buộc người dùng nhập lại từ đầu khi chỉ sai 1 ô.
+
+## Chương trình dạng menu sống liên tục
+`while True` + nhánh thoát bằng `break` — khác với script Giai đoạn 1 (chạy 1 lần rồi kết thúc). Đọc dữ liệu 1 lần lúc mở chương trình, giữ trong biến, mọi thao tác sửa trực tiếp lên biến đó + ghi file ngay sau mỗi thay đổi.
 ---
 *Mỗi khái niệm mới thêm vào cuối phần giai đoạn tương ứng, không xóa cái cũ — đây là kho kiến thức tích lũy dần, dùng để ôn lại khi quên.*
