@@ -39,5 +39,10 @@
 - Phát hiện & tự sửa bug thật: đường dẫn tương đối khiến CSV bị tạo sai thư mục khi chạy script từ nơi khác
 - Đang mơ hồ: chưa có gì nổi bật
 - Việc tiếp theo: Giai đoạn 3 — LLM API & tích hợp tool
+
+### Giai đoạn 2 (làm lại, chậm hơn) — Buổi A: Spec cho "Quản lý task/to-do có deadline"
+- Nhận ra Giai đoạn 2 lần đầu (trình theo dõi ứng tuyển) đi quá nhanh trong 1 buổi chat liền mạch, không kịp ngấm — quyết định làm lại chậm hơn với 1 CLI tool khác, chia rõ từng buổi theo từng bước trong quy trình 6 bước
+- Đã hoàn thành: viết spec đầy đủ 5 phần cho "Quản lý task/to-do có deadline" qua 2 vòng chỉnh sửa (phát hiện thiếu chức năng cập nhật trạng thái, mâu thuẫn giữa "hỏi lúc thêm" và "giá trị mặc định")
+- Việc tiếp theo: Buổi B — Thiết kế (trước khi code)
 ---
 *Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*

@@ -63,5 +63,9 @@ Mỗi ô có hàm nhập riêng, tự lặp `while True` tới khi đúng mới 
 
 ## Chương trình dạng menu sống liên tục
 `while True` + nhánh thoát bằng `break` — khác với script Giai đoạn 1 (chạy 1 lần rồi kết thúc). Đọc dữ liệu 1 lần lúc mở chương trình, giữ trong biến, mọi thao tác sửa trực tiếp lên biến đó + ghi file ngay sau mỗi thay đổi.
+
+## Bài học từ việc viết spec lần 2 (task/to-do)
+- Khi liệt kê Quy tắc nghiệp vụ, dễ quên 1 chức năng cốt lõi nếu không đối chiếu lại với Mục tiêu ban đầu (thiếu hẳn "cập nhật trạng thái" dù mục tiêu đã nói rõ)
+- Tự mâu thuẫn hay xảy ra giữa các phần spec khi thêm chi tiết dần dần (vd: vừa nói "hỏi lúc thêm mới" vừa nói "có giá trị mặc định" cho cùng 1 trường) — cần đọc lại toàn bộ spec sau khi sửa để bắt các mâu thuẫn này, không chỉ sửa từng chỗ riêng lẻ
 ---
 *Mỗi khái niệm mới thêm vào cuối phần giai đoạn tương ứng, không xóa cái cũ — đây là kho kiến thức tích lũy dần, dùng để ôn lại khi quên.*
