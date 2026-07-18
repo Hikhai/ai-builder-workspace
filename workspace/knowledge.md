@@ -67,5 +67,8 @@ Mỗi ô có hàm nhập riêng, tự lặp `while True` tới khi đúng mới 
 ## Bài học từ việc viết spec lần 2 (task/to-do)
 - Khi liệt kê Quy tắc nghiệp vụ, dễ quên 1 chức năng cốt lõi nếu không đối chiếu lại với Mục tiêu ban đầu (thiếu hẳn "cập nhật trạng thái" dù mục tiêu đã nói rõ)
 - Tự mâu thuẫn hay xảy ra giữa các phần spec khi thêm chi tiết dần dần (vd: vừa nói "hỏi lúc thêm mới" vừa nói "có giá trị mặc định" cho cùng 1 trường) — cần đọc lại toàn bộ spec sau khi sửa để bắt các mâu thuẫn này, không chỉ sửa từng chỗ riêng lẻ
+
+## Bẫy thiết kế: sắp xếp ở nhiều nơi độc lập gây lệch dữ liệu
+Nếu 2 hàm khác nhau (vd lưu file và hiển thị) tự sắp xếp riêng một danh sách, dễ tạo ra 2 "phiên bản thứ tự" khác nhau tồn tại song song trong chương trình. Khi 1 thao tác khác (xóa/cập nhật) dựa vào STT hiển thị nhưng lại thao tác trên bản chưa đồng bộ, sẽ gây lỗi ngầm (xóa/sửa nhầm) — không crash, không báo lỗi, chỉ sai âm thầm. Cách phòng tránh: chỉ giữ **1 nguồn sự thật** (single source of truth) — mọi thao tác cần STT phải dựa trên đúng bản vừa hiển thị gần nhất.
 ---
 *Mỗi khái niệm mới thêm vào cuối phần giai đoạn tương ứng, không xóa cái cũ — đây là kho kiến thức tích lũy dần, dùng để ôn lại khi quên.*
