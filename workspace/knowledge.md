@@ -70,5 +70,20 @@ Mỗi ô có hàm nhập riêng, tự lặp `while True` tới khi đúng mới 
 
 ## Bẫy thiết kế: sắp xếp ở nhiều nơi độc lập gây lệch dữ liệu
 Nếu 2 hàm khác nhau (vd lưu file và hiển thị) tự sắp xếp riêng một danh sách, dễ tạo ra 2 "phiên bản thứ tự" khác nhau tồn tại song song trong chương trình. Khi 1 thao tác khác (xóa/cập nhật) dựa vào STT hiển thị nhưng lại thao tác trên bản chưa đồng bộ, sẽ gây lỗi ngầm (xóa/sửa nhầm) — không crash, không báo lỗi, chỉ sai âm thầm. Cách phòng tránh: chỉ giữ **1 nguồn sự thật** (single source of truth) — mọi thao tác cần STT phải dựa trên đúng bản vừa hiển thị gần nhất.
+
+## sorted() với key — hàm như một giá trị
+`key=ten_ham` (không ngoặc) nghĩa là đưa cho sorted() *chính hàm đó* để nó tự gọi lại cho từng phần tử — khác `ten_ham()` (có ngoặc) là gọi ngay lập tức. `key=ten_ham()` sẽ lỗi (thiếu tham số bắt buộc), hoặc nếu gọi có tham số cụ thể sẽ lỗi "not callable" vì sorted() cần một hàm để gọi lặp lại, không phải 1 giá trị cố định.
+
+## Tuple và so sánh kiểu từ điển
+`(a, b)` là tuple — gom nhiều giá trị thành 1 khối, giữ thứ tự, không sửa được. Python so 2 tuple bằng cách so từng phần tử từ trái sang phải, chỉ xét phần tử tiếp theo khi phần tử trước bằng nhau (giống so từ trong từ điển). Đây là cách "sắp theo tiêu chí A trước, tiêu chí B sau" được hiện thực mà không cần if/else phức tạp.
+
+## Ép kiểu ngày tháng trước khi so sánh
+So sánh 2 chuỗi ngày dạng text (`"20/07/2026"` vs `"05/08/2026"`) sẽ so theo ký tự, cho kết quả sai hoàn toàn. Phải dùng `datetime.strptime(chuoi, "%d/%m/%Y")` ép thành kiểu `datetime` thật trước khi so sánh. `datetime.now().strftime(...)` là chiều ngược — lấy ngày hệ thống, định dạng thành chuỗi.
+
+## Dict trong list là tham chiếu, không phải bản sao
+`cong_viec = danh_sach[i]` rồi sửa `cong_viec["truong"] = ...` sẽ tự động sửa luôn phần tử trong `danh_sach` gốc — không cần gán ngược lại. Vì dict là kiểu dữ liệu tham chiếu trong Python.
+
+## Bài học spec: liệt kê rõ ràng buộc giữa các trường
+Nếu 2 trường có quan hệ logic với nhau trong thực tế (vd hạn deadline nên sau ngày thêm việc), phải ghi rõ ràng buộc đó ngay trong spec — code sẽ không tự suy ra được, dù không có ràng buộc thì code vẫn "chạy đúng" theo nghĩa không lỗi, chỉ là kết quả không hợp lý ngoài đời thực.
 ---
 *Mỗi khái niệm mới thêm vào cuối phần giai đoạn tương ứng, không xóa cái cũ — đây là kho kiến thức tích lũy dần, dùng để ôn lại khi quên.*

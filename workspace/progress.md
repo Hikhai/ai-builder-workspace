@@ -44,5 +44,18 @@
 - Nhận ra Giai đoạn 2 lần đầu (trình theo dõi ứng tuyển) đi quá nhanh trong 1 buổi chat liền mạch, không kịp ngấm — quyết định làm lại chậm hơn với 1 CLI tool khác, chia rõ từng buổi theo từng bước trong quy trình 6 bước
 - Đã hoàn thành: viết spec đầy đủ 5 phần cho "Quản lý task/to-do có deadline" qua 2 vòng chỉnh sửa (phát hiện thiếu chức năng cập nhật trạng thái, mâu thuẫn giữa "hỏi lúc thêm" và "giá trị mặc định")
 - Việc tiếp theo: Buổi B — Thiết kế (trước khi code)
+
+### Giai đoạn 2 (làm lại) — Buổi B: Thiết kế cho task/to-do
+- Đã hoàn thành: thiết kế 7 hàm dạng bảng (nhận vào/trả về), xác định luồng chạy
+- Tự phát hiện lỗ hổng thiết kế thật: nếu sắp xếp riêng ở 2 chỗ (lưu file và hiển thị) mà không đồng bộ, STT người dùng thấy trên màn hình có thể lệch với STT dùng để xóa/cập nhật thật — dẫn tới xóa/sửa nhầm công việc
+- Giải quyết bằng nguyên tắc: các hàm cần STT (xóa, cập nhật) luôn gọi hien_thi trước để đảm bảo dùng chung đúng 1 bản đã sắp xếp
+- Việc tiếp theo: Buổi C — Xây dựng (code)
+
+### Giai đoạn 2 (làm lại) — Buổi C: Xây dựng "Quản lý task/to-do có deadline"
+- Đã hoàn thành: code đủ 7 hàm theo đúng thiết kế đã chốt (đọc/ghi CSV, sắp xếp theo tuple, thêm/cập nhật/xóa với validate từng ô, menu)
+- Học sâu về sorted(key=...) qua nhiều vòng hỏi-đáp: hàm truyền như giá trị (không gọi bằng ()), tuple so sánh kiểu từ điển, vì sao phải ép kiểu datetime trước khi so ngày
+- Tự phát hiện 2 vấn đề thật: (1) lỗi trong đoạn code test khiến mất dữ liệu cũ (quên đọc file trước khi ghi đè), (2) lỗ hổng nghiệp vụ trong spec — hạn deadline có thể là ngày trong quá khứ so với ngày thêm việc, do spec chưa từng ràng buộc điều này (rút kinh nghiệm cho spec lần sau, không sửa lại bản này)
+- Nguyên tắc thiết kế "gọi hien_thi trước khi xóa/cập nhật để đồng bộ STT" đã được kiểm chứng hoạt động đúng qua test thực tế
+- Việc tiếp theo: Giai đoạn 3 — LLM API & tích hợp tool
 ---
 *Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*
