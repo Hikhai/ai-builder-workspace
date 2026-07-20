@@ -110,5 +110,15 @@ Một số model tự sinh "suy nghĩ nội bộ" (reasoning_tokens) trước kh
 
 ## Model tự suy luận ý định từ nội dung
 Dán 1 đoạn văn vào `content` mà không kèm yêu cầu cụ thể, model có thể tự hiểu là "hãy phân tích" và trả lời dài, tốn nhiều token hơn dự kiến. Muốn kiểm soát chặt, cần ra lệnh rõ ràng — liên quan tới prompt engineering.
+
+## Prompt engineering có hệ thống
+- **System prompt** (`role: "system"`): đặt trước tin nhắn người dùng, "cài đặt" hành vi chung cho cả cuộc hội thoại — cách ra lệnh rõ ràng để model không tự suy diễn sai ý định.
+- **Few-shot**: đưa vài ví dụ mẫu (input → output mong muốn) ngay trong prompt, giúp model bắt chước đúng định dạng, đáng tin hơn chỉ mô tả bằng lời.
+- **Structured output**: yêu cầu model trả JSON thay vì văn xuôi tự do, để code parse trực tiếp bằng `json.loads()`. Luôn bọc trong `try/except json.JSONDecodeError` vì model đôi khi vẫn trả thêm chữ thừa dù đã dặn không giải thích.
+- **Cho model biết dữ kiện thời gian:** model không tự có đồng hồ — phải truyền "hôm nay là ngày..." vào system prompt nếu cần model suy luận theo thời gian thực.
+- Trong f-string, muốn in dấu ngoặc `{` `}` thật (không phải chỗ chèn biến) phải viết gấp đôi `{{` `}}`.
+
+## Giới hạn thật: LLM suy luận ngôn ngữ, không đảm bảo tính toán chính xác
+Ngay cả khi được cho đúng dữ kiện (hôm nay là ngày X), model vẫn có thể tính sai phép cộng/trừ ngày tháng — vì bản chất là "đoán từ tiếp theo hợp lý" chứ không thực sự làm phép tính như máy tính. Với các phép tính chính xác (ngày tháng, số học, đơn vị đo), luôn cần tự kiểm chứng kết quả bằng code hoặc tính tay, không tin tuyệt đối vào output của model dù prompt viết đúng.
 ---
 *Mỗi khái niệm mới thêm vào cuối phần giai đoạn tương ứng, không xóa cái cũ — đây là kho kiến thức tích lũy dần, dùng để ôn lại khi quên.*

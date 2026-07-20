@@ -63,6 +63,12 @@
 - Gặp lỗi thật: model cụ thể (llama-3.3-70b-instruct:free) bị gỡ khỏi danh sách miễn phí ngay khi test — chuyển sang dùng "openrouter/free" (auto-router) để tránh phụ thuộc vào 1 tên model cụ thể dễ đổi
 - Tự đo và tính toán tỷ lệ token/từ cho tiếng Việt (~2.2 token/từ) qua thực nghiệm, ước lượng ban đầu bị lệch xa (đoán "vài chục ngàn" trong khi thực tế ~1500) nhưng tự sửa đúng khi tính có căn cứ
 - Phát hiện: model tự suy luận ý định từ nội dung (dán bài thơ → tự phân tích chi tiết dù không yêu cầu), tốn nhiều token hơn hẳn — liên hệ tới Prompt Engineering buổi sau
-- Việc tiếp theo: Giai đoạn 3, Buổi 2 — Prompt engineering có hệ thống      
+- Việc tiếp theo: Giai đoạn 3, Buổi 2 — Prompt engineering có hệ thống   
+
+### Giai đoạn 3 — Buổi 2: Prompt engineering có hệ thống
+- Đã hoàn thành: học system prompt, few-shot, structured output (JSON), xây hàm trích xuất công việc từ câu tiếng Việt tự nhiên qua LLM
+- Tự phát hiện bug thật: model tính sai phép cộng ngày tháng ("tuần sau" ra ngày vẫn thuộc tuần này) dù system prompt đã cho đúng ngày hôm nay — 1/2 câu test đúng, 1/2 sai
+- Bài học quan trọng: LLM suy luận bằng ngôn ngữ, không đảm bảo tính toán chính xác (ngày tháng, số học) dù có đủ dữ kiện đúng — cần tự kiểm chứng bằng code, không tin tuyệt đối
+- Việc tiếp theo: Giai đoạn 3, Buổi 3 — Function calling / tool use cơ bản
 ---
 *Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*
