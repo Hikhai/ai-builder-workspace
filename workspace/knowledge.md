@@ -120,5 +120,12 @@ Dán 1 đoạn văn vào `content` mà không kèm yêu cầu cụ thể, model 
 
 ## Giới hạn thật: LLM suy luận ngôn ngữ, không đảm bảo tính toán chính xác
 Ngay cả khi được cho đúng dữ kiện (hôm nay là ngày X), model vẫn có thể tính sai phép cộng/trừ ngày tháng — vì bản chất là "đoán từ tiếp theo hợp lý" chứ không thực sự làm phép tính như máy tính. Với các phép tính chính xác (ngày tháng, số học, đơn vị đo), luôn cần tự kiểm chứng kết quả bằng code hoặc tính tay, không tin tuyệt đối vào output của model dù prompt viết đúng.
+
+## Function calling vẫn có 2 lớp lỗi ẩn, ngoài việc "tool tính đúng"
+1. **Model có thể "bịa" lại kết quả tool trong câu trả lời cuối** — dù tool trả đúng, model diễn đạt lại bằng lời có thể sai lệch. Cách phòng: luôn in/log kết quả thô từ tool ra riêng để đối chiếu bằng mắt.
+2. **Model phải tự quy đổi đơn vị trong câu hỏi (tháng, tuần...) sang đúng tham số tool yêu cầu** — bước quy đổi này là 1 phép tính, model dễ làm sai. Quy đổi tháng→ngày về bản chất không chính xác tuyệt đối (tháng có độ dài khác nhau). Bài học thiết kế: tool nên nhận tham số gần với ngôn ngữ tự nhiên của câu hỏi nhất có thể.
+
+## Xử lý nhiều lượt gọi tool liên tiếp
+Model có thể cần gọi tool nhiều lần trong 1 câu hỏi. Dùng vòng lặp (có giới hạn số vòng) thay vì giả định chỉ có đúng 1 lượt gọi — nếu không, các lượt sau bị bỏ qua, `content` trả về `None`.
 ---
 *Mỗi khái niệm mới thêm vào cuối phần giai đoạn tương ứng, không xóa cái cũ — đây là kho kiến thức tích lũy dần, dùng để ôn lại khi quên.*

@@ -70,5 +70,13 @@
 - Tự phát hiện bug thật: model tính sai phép cộng ngày tháng ("tuần sau" ra ngày vẫn thuộc tuần này) dù system prompt đã cho đúng ngày hôm nay — 1/2 câu test đúng, 1/2 sai
 - Bài học quan trọng: LLM suy luận bằng ngôn ngữ, không đảm bảo tính toán chính xác (ngày tháng, số học) dù có đủ dữ kiện đúng — cần tự kiểm chứng bằng code, không tin tuyệt đối
 - Việc tiếp theo: Giai đoạn 3, Buổi 3 — Function calling / tool use cơ bản
+
+### Giai đoạn 3 — Buổi 3 (mở rộng): Tự kiểm chứng function calling qua nhiều case khó
+- Sau khi hoàn thành function calling cơ bản, tự test thêm nhiều câu hỏi mơ hồ/không dấu, phát hiện 2 lớp lỗi mới ngoài dự kiến ban đầu
+- Lỗi 1 (đã sửa): model "bịa" lại kết quả cuối cùng khác với kết quả thật tool trả về (vd tool trả 20/08 nhưng model nói 1/8) — sửa bằng cách thêm dòng in "Kết quả thật từ hàm" để luôn đối chiếu được, và thêm vòng lặp xử lý nhiều lượt gọi tool (sửa luôn bug in ra None khi model cần gọi tool nhiều lần)
+- Lỗi 2 (đã sửa): hàm tinh_ngay ban đầu không tính thứ trong tuần, khiến model phải tự đoán (sai) hoặc từ chối trả lời — sửa bằng cách để Python tính luôn thứ bằng datetime.weekday(), không để model tự suy luận
+- Lỗi 3 (chưa sửa, ghi nhận làm bài học): tool tinh_ngay chỉ nhận tham số "số ngày" — khi câu hỏi nói bằng "tháng" (vd "20 tháng nữa"), model phải tự quy đổi tháng→ngày và làm sai. Phát hiện sâu hơn: quy đổi tháng→ngày về bản chất không chính xác vì độ dài tháng khác nhau — đây là lỗi thiết kế tool (chọn sai loại tham số), không phải lỗi model tính dở
+- Quyết định: không mở rộng thêm tool cho "theo tháng" ở bài mini này, theo đúng nguyên tắc không thêm cấu trúc khi chưa cần
+- Việc tiếp theo: Giai đoạn 4 — Dự án lớn: AI Hub tích hợp nhiều model
 ---
 *Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*

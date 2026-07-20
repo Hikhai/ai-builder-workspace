@@ -1,48 +1,61 @@
 import os
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from openai import OpenAI
 
 load_dotenv()
 client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=os.getenv("OPENROUTER_API_KEY"))
 
-HOM_NAY = datetime.now().strftime("%d/%m/%Y")
+def tinh_ngay(so_ngay):
+    ket_qua = datetime.now() + timedelta(days=so_ngay)
+    thu_trong_tuan = ["Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy", "Chủ Nhật"]
+    ngay_thang = ket_qua.strftime("%d/%m/%Y")
+    thu = thu_trong_tuan[ket_qua.weekday()]
+    return f"{ngay_thang} ({thu})"
 
-SYSTEM_PROMPT = f"""Bạn là công cụ trích xuất dữ liệu công việc từ câu tiếng Việt tự nhiên.
-Hôm nay là ngày {HOM_NAY}.
-Chỉ trả về đúng 1 đối tượng JSON, không giải thích, không thêm chữ nào khác ngoài JSON.
-JSON có đúng 3 trường: "ten_cong_viec" (chuỗi ngắn gọn), "do_quan_trong" (chỉ "Gấp" hoặc "Không gấp"), "han_deadline" (định dạng dd/mm/yyyy).
+TOOLS = [
+    {
+        "type": "function",
+        "function": {
+            "name": "tinh_ngay",
+            "description": "Tính ra ngày và thứ trong tuần cụ thể (dd/mm/yyyy) bằng cách cộng thêm 1 số ngày vào ngày hôm nay. Dùng hàm này bất cứ khi nào cần tính một ngày trong tương lai, không tự đoán bằng lời.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "so_ngay": {
+                        "type": "integer",
+                        "description": "Số ngày cần cộng thêm vào hôm nay để ra ngày đích"
+                    }
+                },
+                "required": ["so_ngay"],
+            },
+        },
+    }
+]
 
-Ví dụ:
-Input: "Mai phải nộp bài tập môn Toán, hơi gấp"
-Output: {{"ten_cong_viec": "Nộp bài tập môn Toán", "do_quan_trong": "Gấp", "han_deadline": "21/07/2026"}}
+def hoi(cau_hoi, toi_da_vong_lap=5):
+    messages = [
+        {"role": "system", "content": f"Hôm nay là {datetime.now().strftime('%d/%m/%Y')}."},
+        {"role": "user", "content": cau_hoi},
+    ]
 
-Input: "Cuối tháng sau nhớ đi khám sức khỏe định kỳ"
-Output: {{"ten_cong_viec": "Đi khám sức khỏe định kỳ", "do_quan_trong": "Không gấp", "han_deadline": "31/08/2026"}}
-"""
+    for _ in range(toi_da_vong_lap):
+        response = client.chat.completions.create(model="openrouter/free", messages=messages, tools=TOOLS)
+        tin_nhan = response.choices[0].message
 
-def trich_xuat(cau_noi):
-    response = client.chat.completions.create(
-        model="openrouter/free",
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": cau_noi},
-        ],
-    )
-    noi_dung = response.choices[0].message.content
-    try:
-        return json.loads(noi_dung)
-    except json.JSONDecodeError:
-        print(f"Model trả về không đúng JSON:\n{noi_dung}")
-        return None
+        if not tin_nhan.tool_calls:
+            return tin_nhan.content
+
+        messages.append(tin_nhan)
+        for goi_ham in tin_nhan.tool_calls:
+            print(f"[Model yêu cầu gọi: {goi_ham.function.name}({goi_ham.function.arguments})]")
+            tham_so = json.loads(goi_ham.function.arguments)
+            ket_qua = tinh_ngay(tham_so["so_ngay"])
+            print(f"[Kết quả thật từ hàm: {ket_qua}]")   # <-- MỚI: in raw kết quả để đối chiếu
+            messages.append({"role": "tool", "tool_call_id": goi_ham.id, "content": ket_qua})
+
+    return "Không trả lời được sau nhiều lượt gọi hàm."
 
 if __name__ == "__main__":
-    cac_cau_test = [
-        "Nhắc tôi nộp báo cáo tuần trước thứ 6 tuần sau, gấp lắm",
-        "Tuần sau đi sinh nhật bạn thân, không gấp lắm",
-    ]
-    for cau in cac_cau_test:
-        ket_qua = trich_xuat(cau)
-        print(f"Input: {cau}")
-        print(f"Output: {ket_qua}\n")
+    print(hoi(input("Câu hỏi: ")))
