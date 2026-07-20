@@ -4,66 +4,64 @@
 
 ## Trạng thái hiện tại
 
-- **Giai đoạn:** Giai đoạn 1
+- **Giai đoạn:** Giai đoạn 3 — đã hoàn thành, sẵn sàng sang Giai đoạn 4
 
 ## Lịch sử
 
 ### Buổi 1 — Biến & kiểu dữ liệu
 - Đã hoàn thành: học biến/kiểu dữ liệu cơ bản (int, float, str, bool), làm bài "Hóa đơn cà phê" theo đủ quy trình 6 bước
 - Tự phát hiện và sửa 1 bug thật (biến format tính sai thời điểm — không tự cập nhật khi giá trị gốc đổi sau đó), giải quyết bằng cách tự vận dụng hàm dù chưa học chính thức
-- Đang mơ hồ: chưa có gì nổi bật ở phần này
-- Việc tiếp theo: buổi 2 — xử lý lỗi cơ bản (try/except), hoặc luyện thêm biến/kiểu dữ liệu nếu muốn chắc hơn trước khi qua bài mới
+- Việc tiếp theo: buổi 2 — xử lý lỗi cơ bản (try/except)
 
 ### Buổi 2 — Xử lý lỗi cơ bản (try/except)
 - Đã hoàn thành: học try/except, áp dụng vào hoa_don.py để không crash khi nhập sai dữ liệu
 - Làm đúng ngay từ lần đầu: chỉ bọc try quanh đúng phần rủi ro (input), không bọc luôn phần tính toán/in kết quả
-- Đang mơ hồ: chưa có gì nổi bật
-- Việc tiếp theo: buổi 3 — hàm (function), hoặc luyện thêm try/except nếu muốn chắc hơn
+- Việc tiếp theo: buổi 3 — hàm (function)
 
 ### Buổi 3 — Hàm (function)
 - Đã hoàn thành: học hàm (def, tham số, return, biến cục bộ), tách hoa_don.py thành 4 hàm rõ trách nhiệm (nhap_du_lieu, tinh_tong_tien, in_ket_qua, dinh_dang_tien)
-- Tự phát hiện được vì sao thứ tự định nghĩa hàm trong file không quan trọng (Python đọc hết các def trước khi chạy code chính)
+- Tự phát hiện được vì sao thứ tự định nghĩa hàm trong file không quan trọng
 - Tự sửa được dead code (dòng return thừa không bao giờ chạy tới) sau khi được chỉ ra
-- Đang mơ hồ: chưa có gì nổi bật
-- Việc tiếp theo: buổi 4 — Git/GitHub cơ bản (commit, branch, PR, đọc diff) — đây là khái niệm cuối của Giai đoạn 1
+- Việc tiếp theo: buổi 4 — Git/GitHub cơ bản
 
 ### Buổi 4 — Branch, Pull Request, đọc diff (hoàn thành Giai đoạn 1)
 - Đã hoàn thành: học branch/PR/diff, thêm tính năng loại đồ uống qua nhánh riêng + merge PR
-- Phát hiện lỗi quy trình thật: quên commit+push buổi 3 trước khi tạo nhánh mới, khiến buổi 3 và 4 bị dồn chung 1 commit — tự dùng git log để chẩn đoán đúng nguyên nhân
+- Phát hiện lỗi quy trình thật: quên commit+push buổi 3 trước khi tạo nhánh mới, khiến buổi 3 và 4 bị dồn chung 1 commit
 - Thói quen mới thêm: chạy git status + git log --oneline -3 trước khi tạo branch mới
-- Việc tiếp theo: Giai đoạn 2 — spec-driven, làm việc chuyên nghiệp với AI coding agent
+- Việc tiếp theo: Giai đoạn 2 — spec-driven
 
-### Giai đoạn 2 — Spec-driven: Trình theo dõi ứng tuyển việc làm
-- Đã hoàn thành: viết spec đầy đủ 5 phần qua 3 vòng chỉnh sửa (từ ý tưởng ảo tưởng "tự động cào tin tuyển dụng" thu hẹp về đúng MVP), AI đề xuất kế hoạch code từng bước, review diff từng hàm trước khi ghép
-- Xây xong: doc_du_lieu/ghi_du_lieu (CSV, đường dẫn tuyệt đối), hien_thi_danh_sach, them_moi (validate từng ô độc lập), xoa_dong (validate STT), menu (vòng lặp while sống tới khi thoát)
+### Giai đoạn 2 (lần 1) — Spec-driven: Trình theo dõi ứng tuyển việc làm
+- Đã hoàn thành: viết spec đầy đủ 5 phần qua 3 vòng chỉnh sửa, AI đề xuất kế hoạch code từng bước, review diff từng hàm trước khi ghép
+- Xây xong: doc_du_lieu/ghi_du_lieu (CSV, đường dẫn tuyệt đối), hien_thi_danh_sach, them_moi (validate từng ô độc lập), xoa_dong (validate STT), menu
 - Phát hiện & tự sửa bug thật: đường dẫn tương đối khiến CSV bị tạo sai thư mục khi chạy script từ nơi khác
-- Đang mơ hồ: chưa có gì nổi bật
-- Việc tiếp theo: Giai đoạn 3 — LLM API & tích hợp tool
+- Nhận xét quan trọng: cả giai đoạn làm liền 1 buổi chat dài, không kịp ngấm — quyết định làm lại chậm hơn với CLI tool khác
 
-### Giai đoạn 2 (làm lại, chậm hơn) — Buổi A: Spec cho "Quản lý task/to-do có deadline"
-- Nhận ra Giai đoạn 2 lần đầu (trình theo dõi ứng tuyển) đi quá nhanh trong 1 buổi chat liền mạch, không kịp ngấm — quyết định làm lại chậm hơn với 1 CLI tool khác, chia rõ từng buổi theo từng bước trong quy trình 6 bước
-- Đã hoàn thành: viết spec đầy đủ 5 phần cho "Quản lý task/to-do có deadline" qua 2 vòng chỉnh sửa (phát hiện thiếu chức năng cập nhật trạng thái, mâu thuẫn giữa "hỏi lúc thêm" và "giá trị mặc định")
-- Việc tiếp theo: Buổi B — Thiết kế (trước khi code)
+### Giai đoạn 2 (làm lại) — Buổi A: Spec cho "Quản lý task/to-do có deadline"
+- Đã hoàn thành: viết spec đầy đủ 5 phần qua 2 vòng chỉnh sửa (phát hiện thiếu chức năng cập nhật trạng thái, mâu thuẫn giữa "hỏi lúc thêm" và "giá trị mặc định")
+- Việc tiếp theo: Buổi B — Thiết kế
 
 ### Giai đoạn 2 (làm lại) — Buổi B: Thiết kế cho task/to-do
 - Đã hoàn thành: thiết kế 7 hàm dạng bảng (nhận vào/trả về), xác định luồng chạy
-- Tự phát hiện lỗ hổng thiết kế thật: nếu sắp xếp riêng ở 2 chỗ (lưu file và hiển thị) mà không đồng bộ, STT người dùng thấy trên màn hình có thể lệch với STT dùng để xóa/cập nhật thật — dẫn tới xóa/sửa nhầm công việc
-- Giải quyết bằng nguyên tắc: các hàm cần STT (xóa, cập nhật) luôn gọi hien_thi trước để đảm bảo dùng chung đúng 1 bản đã sắp xếp
-- Việc tiếp theo: Buổi C — Xây dựng (code)
+- Tự phát hiện lỗ hổng thiết kế thật: nếu sắp xếp riêng ở 2 chỗ (lưu file và hiển thị) mà không đồng bộ, STT hiển thị có thể lệch với STT dùng để xóa/cập nhật
+- Giải quyết bằng nguyên tắc: các hàm cần STT luôn gọi hien_thi trước để dùng chung đúng 1 bản đã sắp xếp
+- Việc tiếp theo: Buổi C — Xây dựng
 
-### Giai đoạn 2 (làm lại) — Buổi C: Xây dựng "Quản lý task/to-do có deadline"
-- Đã hoàn thành: code đủ 7 hàm theo đúng thiết kế đã chốt (đọc/ghi CSV, sắp xếp theo tuple, thêm/cập nhật/xóa với validate từng ô, menu)
-- Học sâu về sorted(key=...) qua nhiều vòng hỏi-đáp: hàm truyền như giá trị (không gọi bằng ()), tuple so sánh kiểu từ điển, vì sao phải ép kiểu datetime trước khi so ngày
-- Tự phát hiện 2 vấn đề thật: (1) lỗi trong đoạn code test khiến mất dữ liệu cũ (quên đọc file trước khi ghi đè), (2) lỗ hổng nghiệp vụ trong spec — hạn deadline có thể là ngày trong quá khứ so với ngày thêm việc, do spec chưa từng ràng buộc điều này (rút kinh nghiệm cho spec lần sau, không sửa lại bản này)
-- Nguyên tắc thiết kế "gọi hien_thi trước khi xóa/cập nhật để đồng bộ STT" đã được kiểm chứng hoạt động đúng qua test thực tế
+### Giai đoạn 2 (làm lại) — Buổi C: Xây dựng "Quản lý task/to-do có deadline" (hoàn thành Giai đoạn 2)
+- Đã hoàn thành: code đủ 7 hàm theo đúng thiết kế đã chốt
+- Học sâu về sorted(key=...): hàm truyền như giá trị, tuple so sánh kiểu từ điển, vì sao phải ép kiểu datetime trước khi so ngày
+- Tự phát hiện 2 vấn đề thật: (1) lỗi trong đoạn code test khiến mất dữ liệu cũ, (2) lỗ hổng nghiệp vụ trong spec — hạn deadline có thể là ngày trong quá khứ so với ngày thêm việc (rút kinh nghiệm cho spec lần sau)
+- Nguyên tắc "gọi hien_thi trước khi xóa/cập nhật để đồng bộ STT" đã được kiểm chứng đúng qua test thực tế
 - Việc tiếp theo: Giai đoạn 3 — LLM API & tích hợp tool
+
+---
+*Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*
 
 ### Giai đoạn 3 — Buổi 1: Gọi LLM API + Token/Context window
 - Đã hoàn thành: setup OpenRouter (API key, .env, .gitignore), gọi API thành công qua thư viện openai với base_url tùy chỉnh
 - Gặp lỗi thật: model cụ thể (llama-3.3-70b-instruct:free) bị gỡ khỏi danh sách miễn phí ngay khi test — chuyển sang dùng "openrouter/free" (auto-router) để tránh phụ thuộc vào 1 tên model cụ thể dễ đổi
 - Tự đo và tính toán tỷ lệ token/từ cho tiếng Việt (~2.2 token/từ) qua thực nghiệm, ước lượng ban đầu bị lệch xa (đoán "vài chục ngàn" trong khi thực tế ~1500) nhưng tự sửa đúng khi tính có căn cứ
 - Phát hiện: model tự suy luận ý định từ nội dung (dán bài thơ → tự phân tích chi tiết dù không yêu cầu), tốn nhiều token hơn hẳn — liên hệ tới Prompt Engineering buổi sau
-- Việc tiếp theo: Giai đoạn 3, Buổi 2 — Prompt engineering có hệ thống   
+- Việc tiếp theo: Giai đoạn 3, Buổi 2 — Prompt engineering có hệ thống
 
 ### Giai đoạn 3 — Buổi 2: Prompt engineering có hệ thống
 - Đã hoàn thành: học system prompt, few-shot, structured output (JSON), xây hàm trích xuất công việc từ câu tiếng Việt tự nhiên qua LLM
@@ -71,12 +69,23 @@
 - Bài học quan trọng: LLM suy luận bằng ngôn ngữ, không đảm bảo tính toán chính xác (ngày tháng, số học) dù có đủ dữ kiện đúng — cần tự kiểm chứng bằng code, không tin tuyệt đối
 - Việc tiếp theo: Giai đoạn 3, Buổi 3 — Function calling / tool use cơ bản
 
+### Giai đoạn 3 — Buổi 3: Function calling / tool use (hoàn thành Giai đoạn 3)
+- Đã hoàn thành: học function calling (khai báo tools, model yêu cầu gọi hàm, Python thực thi, gửi kết quả gọi lại lần 2), áp dụng để sửa đúng lỗi tính ngày sai đã phát hiện ở Buổi 2
+- Xác nhận qua test: model gọi đúng tool khi cần (câu hỏi về ngày), sẽ trả lời thẳng qua nhánh else khi không liên quan (tự trả lời đúng, không cần chạy thử thêm)
+- Hiểu rõ luồng 4 bước: gửi câu hỏi + tools → model yêu cầu gọi hàm (không tự chạy) → Python thực thi hàm thật → gửi kết quả + tool_call_id khớp đúng → gọi lại API lần 2 để model diễn đạt câu trả lời cuối
+- Việc tiếp theo: Giai đoạn 4 — Dự án lớn: Ý tưởng → MVP → Ra mắt (AI Hub tích hợp nhiều model)
+
 ### Giai đoạn 3 — Buổi 3 (mở rộng): Tự kiểm chứng function calling qua nhiều case khó
 - Sau khi hoàn thành function calling cơ bản, tự test thêm nhiều câu hỏi mơ hồ/không dấu, phát hiện 2 lớp lỗi mới ngoài dự kiến ban đầu
 - Lỗi 1 (đã sửa): model "bịa" lại kết quả cuối cùng khác với kết quả thật tool trả về (vd tool trả 20/08 nhưng model nói 1/8) — sửa bằng cách thêm dòng in "Kết quả thật từ hàm" để luôn đối chiếu được, và thêm vòng lặp xử lý nhiều lượt gọi tool (sửa luôn bug in ra None khi model cần gọi tool nhiều lần)
 - Lỗi 2 (đã sửa): hàm tinh_ngay ban đầu không tính thứ trong tuần, khiến model phải tự đoán (sai) hoặc từ chối trả lời — sửa bằng cách để Python tính luôn thứ bằng datetime.weekday(), không để model tự suy luận
-- Lỗi 3 (chưa sửa, ghi nhận làm bài học): tool tinh_ngay chỉ nhận tham số "số ngày" — khi câu hỏi nói bằng "tháng" (vd "20 tháng nữa"), model phải tự quy đổi tháng→ngày và làm sai. Phát hiện sâu hơn: quy đổi tháng→ngày về bản chất không chính xác vì độ dài tháng khác nhau — đây là lỗi thiết kế tool (chọn sai loại tham số), không phải lỗi model tính dở
-- Quyết định: không mở rộng thêm tool cho "theo tháng" ở bài mini này, theo đúng nguyên tắc không thêm cấu trúc khi chưa cần
+- Lỗi 3 (chưa sửa, ghi nhận làm bài học): tool tinh_ngay chỉ nhận tham số "số ngày" — khi câu hỏi nói bằng "tháng" (vd "20 tháng nữa"), model phải tự quy đổi tháng→ngày và làm sai (dùng số cố định 31 cho mọi trường hợp). Phát hiện sâu hơn: quy đổi tháng→ngày về bản chất không chính xác vì độ dài tháng khác nhau — đây là lỗi thiết kế tool (chọn sai loại tham số), không phải lỗi model tính dở
+- Quyết định: không mở rộng thêm tool cho "theo tháng" ở bài mini này, theo đúng nguyên tắc không thêm cấu trúc khi chưa cần — để dành cho dự án AI Hub ở Giai đoạn 4
 - Việc tiếp theo: Giai đoạn 4 — Dự án lớn: AI Hub tích hợp nhiều model
----
-*Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*
+
+### Chốt kế hoạch trước Giai đoạn 4: Nâng tầm dự án AI Hub
+- Người học chia sẻ: dự án AI Hub (Giai đoạn 5, trước đây gọi Giai đoạn 4) là ý tưởng ấp ủ lâu, muốn làm nghiêm túc, bài bản, có thể mở rộng và đưa ra cộng đồng người dùng, tương lai xa hơn là mobile app
+- Đã chốt kiến trúc: web app giao diện tùy chỉnh đẹp (không dùng Streamlit/Gradio vì rập khuôn), mỗi người dùng tự nhập API key riêng (BYOK) thay vì dùng chung 1 key
+- Phát hiện khoảng cách kỹ năng: roadmap từ đầu tới giờ chỉ có Python CLI, chưa có frontend/backend web — quyết định chèn thêm Giai đoạn 4 mới (nền tảng Web: HTML/CSS/JS, Flask/FastAPI, kết nối frontend-backend) trước khi vào dự án AI Hub (dời thành Giai đoạn 5)
+- Người học từng học qua Frontend/Backend cơ bản trước đây nhưng quên gần hết, tương tự tình trạng với Python lúc đầu khóa học
+- Việc tiếp theo: Giai đoạn 4, Buổi 1 — HTML/CSS cơ bản

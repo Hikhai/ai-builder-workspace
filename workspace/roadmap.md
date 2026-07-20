@@ -33,22 +33,39 @@ Mỗi bài tập nhỏ đều làm đủ quy trình 6 bước ở quy mô mini (
 
 **Deliverable:** 1 ứng dụng nhỏ có gọi LLM API thật (ví dụ: chatbot CLI trả lời dựa trên 1 file dữ liệu riêng)
 
-## Giai đoạn 4 — Dự án lớn: Ý tưởng → MVP → Ra mắt (ước lượng 2-3 tuần)
+## Giai đoạn 4 — Nền tảng Web (ước lượng 2 tuần)
 
-Đây là lúc áp dụng toàn bộ quy trình ở quy mô thật, và quay lại ý tưởng ban đầu của bạn: build "AI Hub" tích hợp nhiều model mã nguồn mở/miễn phí (qua OpenRouter, LiteLLM...) — lúc này đã đủ nền tảng để làm nghiêm túc.
+Bổ sung do quyết định mới: dự án Giai đoạn 5 (AI Hub) sẽ là web app có giao diện đẹp, thân thiện — không dùng Streamlit/Gradio để tránh giao diện rập khuôn. Cần học nền tảng web trước khi xây dựng nghiêm túc.
 
+- HTML/CSS cơ bản: cấu trúc trang, bố cục, styling
+- JavaScript cơ bản: tương tác, gọi API từ trình duyệt (fetch)
+- Backend API với Flask hoặc FastAPI: nhận request, trả response, kết nối với code Python đã biết (gọi LLM API, function calling...)
+- Kết nối frontend ↔ backend: frontend gọi vào backend qua API, hiển thị kết quả động (không load lại trang)
+- Vẫn áp dụng đầy đủ quy trình 6 bước, mỗi khái niệm 1 buổi, có thực hành nhỏ
+
+**Deliverable:** 1 trang web nhỏ có backend Flask/FastAPI thật, frontend gọi API và hiển thị kết quả — làm nền để Giai đoạn 5 xây trên đó
+
+## Giai đoạn 5 — Dự án lớn: AI Hub (web app, hướng cộng đồng người dùng) (ước lượng 3-4 tuần)
+
+Đây là dự án quan trọng nhất khóa học — ý tưởng ấp ủ lâu dài của người học, mục tiêu phát triển thành sản phẩm thật, có thể mở rộng, đưa ra cộng đồng người dùng (không chỉ dùng cá nhân). Tương lai xa hơn: mobile app (ngoài phạm vi khóa học hiện tại).
+
+**Quyết định kiến trúc đã chốt:**
+- Web app có giao diện tùy chỉnh, thân thiện — không dùng Streamlit/Gradio
+- Mỗi người dùng tự nhập API key riêng (BYOK) — không dùng chung 1 key của người phát triển, tránh rủi ro chi phí/lạm dụng ở giai đoạn đầu. Mô hình chia sẻ key có kiểm soát để dành cho giai đoạn phát triển sau này, khi sản phẩm đã chứng minh giá trị
+
+**Việc cần làm:**
 - Ý tưởng thật + spec đầy đủ (không phải bài tập giả)
-- Thiết kế kiến trúc: điểm vào gọi được nhiều model qua API tương thích OpenAI, xử lý lỗi, rate limit, fallback
+- Thiết kế kiến trúc: backend gọi được nhiều model qua API tương thích OpenAI (OpenRouter), xử lý lỗi, rate limit, fallback; frontend đẹp, thân thiện
 - Build, test, review như một dự án thật
 - README chuẩn, đẩy lên GitHub, coi như "ra mắt"
 
-**Deliverable:** sản phẩm thật, dùng được lâu dài — không phải bài tập nộp cho xong
+**Deliverable:** sản phẩm thật, dùng được lâu dài, có nền tảng để mở rộng thêm tính năng và người dùng sau này — không phải bài tập nộp cho xong
 
 ---
 
 ## Sau khi hoàn thành
 
-Tổng kết portfolio: những gì đã xây, học được gì, còn thiếu gì để đi tiếp. Quyết định bước kế tiếp (đào sâu RAG/Agent, hay đi làm/thực tập).
+Tổng kết portfolio: những gì đã xây, học được gì, còn thiếu gì để đi tiếp. Với AI Hub, cân nhắc bước phát triển tiếp theo (mobile app, mô hình chia sẻ API key có kiểm soát, thêm tính năng cộng đồng). Quyết định hướng đi chung (đào sâu RAG/Agent, hay đi làm/thực tập).
 
 ---
 *Cập nhật file này khi có thay đổi thực tế về kế hoạch — điều đó bình thường, không phải thất bại.*

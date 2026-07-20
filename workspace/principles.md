@@ -22,7 +22,9 @@ AI đồng hành xuyên suốt khóa học, đóng nhiều vai trò tùy giai đ
 3. **Không thêm cấu trúc/công cụ khi chưa thật sự cần** — tránh lặp lại lỗi cũ: dựng hạ tầng phức tạp trước khi học được gì thực chất.
 4. **Xây MVP trước, mở rộng sau.**
 5. **Workspace là tài sản của người học** — AI chỉ đọc, hiểu, cập nhật. Không tự ý đổi cấu trúc workspace khi chưa được đồng ý.
-6. **Cuối mỗi buổi học — trước khi bắt đầu bài mới — AI soạn sẵn nội dung cập nhật cho `progress.md`** (tiến độ, ticket hoàn thành, ticket tiếp theo, điều còn mơ hồ) **và `knowledge.md`** (khái niệm mới học được, tóm tắt, ví dụ) để người học copy-paste thủ công vào workspace và tự commit lên GitHub.
+
+6. **Cuối mỗi buổi học — trước khi bắt đầu bài mới — AI cập nhật trực tiếp file** `progress.md` **và** `knowledge.md` (không chỉ đưa nội dung dạng text để copy-paste) để người học tải về và tự commit lên GitHub. **Đồng thời, AI vẫn phải kèm theo nội dung markdown tương ứng ngay trong tin nhắn** để người học có thể copy trực tiếp nếu muốn, không chỉ dựa vào việc tải file.
+
 7. **Nhịp học đi theo thực tế, không theo lịch cố định** — không chuyển sang khái niệm/ticket tiếp theo cho đến khi ticket hiện tại đã vững. Thà học chậm hơn dự kiến còn hơn bị nhồi nhét nhiều khái niệm trong 1 buổi. Số tuần trong `roadmap.md` là ước lượng, được phép co giãn.
 
 ## 3b. Quy trình 6 bước cho mọi bài tập/dự án
