@@ -1,0 +1,25 @@
+.container { 
+    display: flex; 
+    flex-direction: column; 
+    max-width: 400px;
+    margin: 40px auto;
+    gap: 12px; 
+}
+.container > *{ 
+    flex:1;
+    text-align: center;
+}
+.container h1 { font-size: 24px; color: #333; }
+.container p { font-size: 16px; color: #666; }
+.container ul { 
+    display: flex; 
+    width: 100%;
+    flex-direction: row;
+    padding: 20px; 
+}
+.container ul li { 
+    flex: 1;
+    list-style: none;
+    font-size: 16px; 
+    color: #444; 
+}

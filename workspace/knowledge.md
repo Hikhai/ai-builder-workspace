@@ -127,5 +127,18 @@ Ngay cả khi được cho đúng dữ kiện (hôm nay là ngày X), model vẫ
 
 ## Xử lý nhiều lượt gọi tool liên tiếp
 Model có thể cần gọi tool nhiều lần trong 1 câu hỏi. Dùng vòng lặp (có giới hạn số vòng) thay vì giả định chỉ có đúng 1 lượt gọi — nếu không, các lượt sau bị bỏ qua, `content` trả về `None`.
+
+## HTML/CSS cơ bản (ôn lại)
+- `class` gắn nhãn để CSS/JS nhắm tới, dùng lại được nhiều lần
+- Flexbox: `display: flex` biến khối cha thành container tự sắp xếp phần tử con theo hàng/cột
+- `text-align: center` (căn chữ) ≠ `margin: auto` (căn cả khối) — cần `max-width` + `margin: 0 auto` để khối thực sự nằm giữa
+- `justify-content`/`align-items` chỉ có tác dụng trên flex container — đặt trên phần tử con không chứa gì sẽ vô tác dụng
+
+## JavaScript cơ bản (ôn lại)
+- `let`/`const` thay cho `var`; arrow function `(x) => x*2`
+- DOM API: `querySelector`, `createElement`, `appendChild`, `textContent`
+- `addEventListener("click", tenHam)` — truyền tên hàm, không gọi `()` — cùng nguyên tắc "hàm như giá trị" đã học ở Python
+- Quy ước đặt tên: JS dùng camelCase, Python dùng snake_case
+- Nên dùng `===` thay vì `==` khi so sánh
 ---
 *Mỗi khái niệm mới thêm vào cuối phần giai đoạn tương ứng, không xóa cái cũ — đây là kho kiến thức tích lũy dần, dùng để ôn lại khi quên.*

@@ -53,9 +53,6 @@
 - Nguyên tắc "gọi hien_thi trước khi xóa/cập nhật để đồng bộ STT" đã được kiểm chứng đúng qua test thực tế
 - Việc tiếp theo: Giai đoạn 3 — LLM API & tích hợp tool
 
----
-*Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*
-
 ### Giai đoạn 3 — Buổi 1: Gọi LLM API + Token/Context window
 - Đã hoàn thành: setup OpenRouter (API key, .env, .gitignore), gọi API thành công qua thư viện openai với base_url tùy chỉnh
 - Gặp lỗi thật: model cụ thể (llama-3.3-70b-instruct:free) bị gỡ khỏi danh sách miễn phí ngay khi test — chuyển sang dùng "openrouter/free" (auto-router) để tránh phụ thuộc vào 1 tên model cụ thể dễ đổi
@@ -89,3 +86,17 @@
 - Phát hiện khoảng cách kỹ năng: roadmap từ đầu tới giờ chỉ có Python CLI, chưa có frontend/backend web — quyết định chèn thêm Giai đoạn 4 mới (nền tảng Web: HTML/CSS/JS, Flask/FastAPI, kết nối frontend-backend) trước khi vào dự án AI Hub (dời thành Giai đoạn 5)
 - Người học từng học qua Frontend/Backend cơ bản trước đây nhưng quên gần hết, tương tự tình trạng với Python lúc đầu khóa học
 - Việc tiếp theo: Giai đoạn 4, Buổi 1 — HTML/CSS cơ bản
+
+### Giai đoạn 4 — Buổi 1: HTML/CSS cơ bản (ôn lại)
+- Đã hoàn thành: ôn HTML/CSS cơ bản (thẻ, class, flexbox), làm trang profile card tĩnh qua 3 vòng chỉnh sửa
+- Tự phát hiện qua nhắc nhở: text-align: center (căn chữ) khác với margin: auto (căn cả khối)
+- Học lại: justify-content/align-items chỉ có tác dụng trên flex container, đặt nhầm trên phần tử con vô tác dụng (liên hệ bài học "dead code" ở Python)
+- Việc tiếp theo: Giai đoạn 4, Buổi 2 — JavaScript cơ bản
+
+### Giai đoạn 4 — Buổi 2: JavaScript cơ bản (ôn lại)
+- Đã hoàn thành: ôn JS cơ bản (let/const, arrow function, DOM API, addEventListener), thêm nút "Thêm kỹ năng" động vào trang profile card
+- Tự áp dụng đúng nguyên tắc "truyền hàm như giá trị" đã học ở Python sang JS
+- Học quy ước đặt tên camelCase của JS (khác snake_case của Python)
+- Việc tiếp theo: Giai đoạn 4, Buổi 3 — Backend API với Flask/FastAPI
+---
+*Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*
