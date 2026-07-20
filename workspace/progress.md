@@ -57,5 +57,12 @@
 - Tự phát hiện 2 vấn đề thật: (1) lỗi trong đoạn code test khiến mất dữ liệu cũ (quên đọc file trước khi ghi đè), (2) lỗ hổng nghiệp vụ trong spec — hạn deadline có thể là ngày trong quá khứ so với ngày thêm việc, do spec chưa từng ràng buộc điều này (rút kinh nghiệm cho spec lần sau, không sửa lại bản này)
 - Nguyên tắc thiết kế "gọi hien_thi trước khi xóa/cập nhật để đồng bộ STT" đã được kiểm chứng hoạt động đúng qua test thực tế
 - Việc tiếp theo: Giai đoạn 3 — LLM API & tích hợp tool
+
+### Giai đoạn 3 — Buổi 1: Gọi LLM API + Token/Context window
+- Đã hoàn thành: setup OpenRouter (API key, .env, .gitignore), gọi API thành công qua thư viện openai với base_url tùy chỉnh
+- Gặp lỗi thật: model cụ thể (llama-3.3-70b-instruct:free) bị gỡ khỏi danh sách miễn phí ngay khi test — chuyển sang dùng "openrouter/free" (auto-router) để tránh phụ thuộc vào 1 tên model cụ thể dễ đổi
+- Tự đo và tính toán tỷ lệ token/từ cho tiếng Việt (~2.2 token/từ) qua thực nghiệm, ước lượng ban đầu bị lệch xa (đoán "vài chục ngàn" trong khi thực tế ~1500) nhưng tự sửa đúng khi tính có căn cứ
+- Phát hiện: model tự suy luận ý định từ nội dung (dán bài thơ → tự phân tích chi tiết dù không yêu cầu), tốn nhiều token hơn hẳn — liên hệ tới Prompt Engineering buổi sau
+- Việc tiếp theo: Giai đoạn 3, Buổi 2 — Prompt engineering có hệ thống      
 ---
 *Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*

@@ -85,5 +85,30 @@ So sánh 2 chuỗi ngày dạng text (`"20/07/2026"` vs `"05/08/2026"`) sẽ so 
 
 ## Bài học spec: liệt kê rõ ràng buộc giữa các trường
 Nếu 2 trường có quan hệ logic với nhau trong thực tế (vd hạn deadline nên sau ngày thêm việc), phải ghi rõ ràng buộc đó ngay trong spec — code sẽ không tự suy ra được, dù không có ràng buộc thì code vẫn "chạy đúng" theo nghĩa không lỗi, chỉ là kết quả không hợp lý ngoài đời thực.
+
+## Giai đoạn 3 — LLM API & tích hợp tool
+
+## Gọi LLM API qua OpenRouter (chuẩn OpenAI-compatible)
+​```python
+from openai import OpenAI
+client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=KEY)
+response = client.chat.completions.create(model="...", messages=[{"role": "user", "content": "..."}])
+​```
+`messages` là danh sách lượt hội thoại (`role` + `content`) — LLM không tự nhớ giữa các lần gọi, phải gửi lại toàn bộ lịch sử mỗi lần.
+
+## Bảo mật API key
+Không viết key thẳng vào code. Lưu trong file `.env` (KEY=giá_trị), đọc bằng `python-dotenv` (`load_dotenv()` + `os.getenv(...)`). Thêm `.env` vào `.gitignore` để không bao giờ commit lên GitHub.
+
+## Token & Context window
+Token là đơn vị văn bản LLM xử lý. Tiếng Anh ≈ 1.3 token/từ, tiếng Việt cao hơn (đo thực tế ≈ 2.2 token/từ). Context window là giới hạn tổng token (prompt + completion) mỗi lần gọi. `response.usage` cho biết `prompt_tokens`, `completion_tokens`, `total_tokens` — nên tự đo thay vì đoán, vì trực giác dễ sai lệch nhiều lần.
+
+## Model miễn phí trên OpenRouter hay đổi — dùng auto-router
+Danh sách model `:free` cụ thể thay đổi thường xuyên, gắn cứng 1 tên model dễ gặp lỗi 404 khi model bị gỡ. Dùng `model="openrouter/free"` — OpenRouter tự chọn 1 model miễn phí còn hoạt động, code ổn định hơn theo thời gian.
+
+## Model reasoning tốn token ẩn
+Một số model tự sinh "suy nghĩ nội bộ" (reasoning_tokens) trước khi trả lời — không hiển thị ra ngoài nhưng vẫn tính vào token/chi phí. Câu trả lời ngắn trên màn hình không phản ánh đúng tổng token đã dùng.
+
+## Model tự suy luận ý định từ nội dung
+Dán 1 đoạn văn vào `content` mà không kèm yêu cầu cụ thể, model có thể tự hiểu là "hãy phân tích" và trả lời dài, tốn nhiều token hơn dự kiến. Muốn kiểm soát chặt, cần ra lệnh rõ ràng — liên quan tới prompt engineering.
 ---
 *Mỗi khái niệm mới thêm vào cuối phần giai đoạn tương ứng, không xóa cái cũ — đây là kho kiến thức tích lũy dần, dùng để ôn lại khi quên.*
