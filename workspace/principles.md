@@ -22,9 +22,7 @@ AI đồng hành xuyên suốt khóa học, đóng nhiều vai trò tùy giai đ
 3. **Không thêm cấu trúc/công cụ khi chưa thật sự cần** — tránh lặp lại lỗi cũ: dựng hạ tầng phức tạp trước khi học được gì thực chất.
 4. **Xây MVP trước, mở rộng sau.**
 5. **Workspace là tài sản của người học** — AI chỉ đọc, hiểu, cập nhật. Không tự ý đổi cấu trúc workspace khi chưa được đồng ý.
-
-6. **Cuối mỗi buổi học — trước khi bắt đầu bài mới — AI cập nhật trực tiếp file** `progress.md` **và** `knowledge.md` (không chỉ đưa nội dung dạng text để copy-paste) để người học tải về và tự commit lên GitHub. **Đồng thời, AI vẫn phải kèm theo nội dung markdown tương ứng ngay trong tin nhắn** để người học có thể copy trực tiếp nếu muốn, không chỉ dựa vào việc tải file.
-
+6. **Cuối mỗi buổi học — trước khi bắt đầu bài mới — AI cập nhật trực tiếp file `progress.md` và `knowledge.md`** (không chỉ đưa nội dung dạng text để copy-paste) để người học tải về và tự commit lên GitHub. **Đồng thời, AI vẫn phải kèm theo nội dung markdown tương ứng ngay trong tin nhắn** để người học có thể copy trực tiếp nếu muốn, không chỉ dựa vào việc tải file.
 7. **Nhịp học đi theo thực tế, không theo lịch cố định** — không chuyển sang khái niệm/ticket tiếp theo cho đến khi ticket hiện tại đã vững. Thà học chậm hơn dự kiến còn hơn bị nhồi nhét nhiều khái niệm trong 1 buổi. Số tuần trong `roadmap.md` là ước lượng, được phép co giãn.
 
 ## 3b. Quy trình 6 bước cho mọi bài tập/dự án
@@ -50,6 +48,16 @@ Vì context của AI có giới hạn (đặc biệt khi đổi sang AI khác), 
 
 **Cách dùng:** đầu mỗi buổi học — nhất là khi đổi sang AI khác (ChatGPT, Claude, Gemini...) — dán nội dung 5 file này vào đầu cuộc trò chuyện. AI đọc xong là nắm được toàn bộ bối cảnh ngay, không cần đọc lại lịch sử chat cũ.
 
-## 5. Về ý tưởng "AI hub" tích hợp nhiều model mã nguồn mở
+## 5. Dự án Giai đoạn 5 — AI đồng hành học tập cá nhân hóa
 
-Đây là **một dự án thực hành trong lộ trình** (Giai đoạn 4, xem `roadmap.md`), không phải công cụ để học ngay từ đầu. Lý do: build công cụ này đòi hỏi nền tảng (API, xử lý lỗi, kiến trúc) mà người học chưa có — làm sớm sẽ lặp lại bẫy "dựng hạ tầng trước khi học được gì" của Sprint 0 cũ.
+Đây là **dự án chính của Giai đoạn 5**, quan trọng nhất khóa học — ý tưởng ấp ủ lâu, người học muốn làm nghiêm túc, bài bản.
+
+**Ý tưởng cốt lõi (không phải nền tảng bán khóa học):** giải quyết vấn đề "có nhiều kiến thức để học nhưng ít người học đến cùng" — AI đóng vai trò mentor cá nhân: tìm hiểu mục tiêu/trình độ/thời gian/cách học qua hội thoại tự nhiên, tạo lộ trình riêng, nhớ tiến độ và điều chỉnh liên tục, khuyến khích học không áp lực (bước nhỏ, đều đặn).
+
+**Phiên bản đầu tiên (MVP):** phục vụ chính người sáng lập làm người dùng đầu tiên, thử nghiệm với kỹ năng cụ thể: **học tiếng Anh**. Mở rộng sang người dùng khác và kỹ năng khác sau khi kiểm chứng.
+
+**Insight kỹ thuật quan trọng:** bộ workspace file (`profile.md`/`progress.md`/`knowledge.md`) dùng xuyên suốt khóa học này chính là 1 phiên bản thủ công của "AI nhớ mục tiêu, tiến độ" mà dự án hướng tới — gợi ý cách làm "bộ nhớ" ở mức MVP: dữ liệu có cấu trúc rõ ràng (không cần vector DB/RAG phức tạp ngay từ đầu).
+
+**Quyết định kiến trúc đã chốt:** web app giao diện tùy chỉnh (không dùng Streamlit/Gradio), chạy local cho MVP (chưa deploy công khai), onboarding qua hội thoại tự nhiên (AI tự trích xuất thông tin, không dùng form cố định).
+
+**Quy tắc thiết kế UI riêng cho dự án này:** xem `projects/giai-doan-5/DESIGN_GUIDELINES.md` — bộ quy tắc thiết kế chi tiết (layout bất đối xứng, typography editorial, khoảng trắng rộng, bảng màu tinh tế, motion cao cấp) người học đã cung cấp, áp dụng cho toàn bộ phần frontend.

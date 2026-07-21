@@ -45,21 +45,27 @@ Bổ sung do quyết định mới: dự án Giai đoạn 5 (AI Hub) sẽ là we
 
 **Deliverable:** 1 trang web nhỏ có backend Flask/FastAPI thật, frontend gọi API và hiển thị kết quả — làm nền để Giai đoạn 5 xây trên đó
 
-## Giai đoạn 5 — Dự án lớn: AI Hub (web app, hướng cộng đồng người dùng) (ước lượng 3-4 tuần)
+## Giai đoạn 5 — Dự án lớn: AI đồng hành học tập cá nhân hóa (ước lượng 4-6 tuần)
 
-Đây là dự án quan trọng nhất khóa học — ý tưởng ấp ủ lâu dài của người học, mục tiêu phát triển thành sản phẩm thật, có thể mở rộng, đưa ra cộng đồng người dùng (không chỉ dùng cá nhân). Tương lai xa hơn: mobile app (ngoài phạm vi khóa học hiện tại).
+Đây là dự án quan trọng nhất khóa học — ý tưởng ấp ủ lâu dài của người học. Không phải nền tảng bán khóa học, mà giải quyết vấn đề "có nhiều kiến thức để học nhưng ít người học đến cùng" bằng AI đóng vai trò mentor cá nhân: tìm hiểu người dùng qua hội thoại, tạo lộ trình riêng, nhớ tiến độ, điều chỉnh liên tục, học không áp lực.
+
+**MVP:** phục vụ chính người sáng lập làm người dùng đầu tiên, thử nghiệm với việc học tiếng Anh. Xem chi tiết spec tại `projects/giai-doan-5/SPEC.md`.
 
 **Quyết định kiến trúc đã chốt:**
-- Web app có giao diện tùy chỉnh, thân thiện — không dùng Streamlit/Gradio
-- Mỗi người dùng tự nhập API key riêng (BYOK) — không dùng chung 1 key của người phát triển, tránh rủi ro chi phí/lạm dụng ở giai đoạn đầu. Mô hình chia sẻ key có kiểm soát để dành cho giai đoạn phát triển sau này, khi sản phẩm đã chứng minh giá trị
+- Web app giao diện tùy chỉnh (không dùng Streamlit/Gradio), theo `projects/giai-doan-5/DESIGN_GUIDELINES.md`
+- Chạy local cho MVP, chưa deploy công khai
+- Onboarding qua hội thoại tự nhiên, AI tự trích xuất thông tin (không dùng form cố định)
+- "Bộ nhớ" mentor ở mức MVP dùng dữ liệu có cấu trúc (SQLite), không cần vector DB/RAG phức tạp ngay từ đầu — lấy cảm hứng từ chính bộ workspace file của khóa học này
 
 **Việc cần làm:**
 - Ý tưởng thật + spec đầy đủ (không phải bài tập giả)
-- Thiết kế kiến trúc: backend gọi được nhiều model qua API tương thích OpenAI (OpenRouter), xử lý lỗi, rate limit, fallback; frontend đẹp, thân thiện
+- Thiết kế kiến trúc: backend (FastAPI) xử lý onboarding, tạo lộ trình, chat mentor, lưu tiến độ; frontend đẹp, thân thiện theo đúng quy tắc thiết kế riêng
 - Build, test, review như một dự án thật
-- README chuẩn, đẩy lên GitHub, coi như "ra mắt"
+- README chuẩn, đẩy lên GitHub, coi như "ra mắt" (bản MVP cho chính người sáng lập dùng)
 
-**Deliverable:** sản phẩm thật, dùng được lâu dài, có nền tảng để mở rộng thêm tính năng và người dùng sau này — không phải bài tập nộp cho xong
+**Ngoài phạm vi MVP:** deploy công khai, đa người dùng, mobile app, chia sẻ API key có kiểm soát — để dành giai đoạn phát triển sau
+
+**Deliverable:** sản phẩm thật, người sáng lập tự dùng được để học tiếng Anh, có nền tảng để mở rộng thêm tính năng và người dùng sau này — không phải bài tập nộp cho xong
 
 ---
 
