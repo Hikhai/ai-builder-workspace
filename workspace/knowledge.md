@@ -140,5 +140,21 @@ Model có thể cần gọi tool nhiều lần trong 1 câu hỏi. Dùng vòng l
 - `addEventListener("click", tenHam)` — truyền tên hàm, không gọi `()` — cùng nguyên tắc "hàm như giá trị" đã học ở Python
 - Quy ước đặt tên: JS dùng camelCase, Python dùng snake_case
 - Nên dùng `===` thay vì `==` khi so sánh
+
+## Backend API với FastAPI
+- Backend chạy nền liên tục, lắng nghe request tại 1 địa chỉ, có nhiều route xử lý từng việc
+- `@app.get/@app.post("/duong-dan")` — decorator đánh dấu hàm xử lý route
+- Hàm trả `dict` → FastAPI tự chuyển JSON
+- `uvicorn ten_file:app --reload`, test qua `http://localhost:8000/docs`
+
+## GET vs POST
+- GET: lấy dữ liệu, tham số trong URL — không hợp với dữ liệu dài/ký tự đặc biệt
+- POST: gửi dữ liệu xử lý, tham số trong body
+
+## Pydantic model
+Định nghĩa hình dạng dữ liệu mong đợi trong body — FastAPI tự validate, từ chối request sai trước khi code chạy.
+
+## Báo lỗi đúng chuẩn HTTP
+`raise HTTPException(status_code=500, detail="...")` thay vì `return None` — tránh lỗi âm thầm (HTTP 200 kèm null đánh lừa người gọi).
 ---
 *Mỗi khái niệm mới thêm vào cuối phần giai đoạn tương ứng, không xóa cái cũ — đây là kho kiến thức tích lũy dần, dùng để ôn lại khi quên.*

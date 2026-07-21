@@ -98,5 +98,12 @@
 - Tự áp dụng đúng nguyên tắc "truyền hàm như giá trị" đã học ở Python sang JS
 - Học quy ước đặt tên camelCase của JS (khác snake_case của Python)
 - Việc tiếp theo: Giai đoạn 4, Buổi 3 — Backend API với Flask/FastAPI
+
+### Giai đoạn 4 — Buổi 3: Backend API với FastAPI (hoàn thành Giai đoạn 4)
+- Đã hoàn thành: xây API POST /trich-xuat, tái sử dụng thành công logic trich_xuat() từ Giai đoạn 3 vào kiến trúc backend mới
+- Tự phát hiện lỗi thiết kế route: dùng GET + tham số URL thay vì POST + body — đã sửa đúng
+- Học Pydantic model để validate tự động dữ liệu đầu vào
+- Sửa xử lý lỗi: từ "return None" âm thầm sang "raise HTTPException" đúng chuẩn (HTTP 500 kèm thông báo rõ ràng)
+- Việc tiếp theo: Giai đoạn 5 — Dự án lớn: AI Hub (web app hướng cộng đồng người dùng)
 ---
 *Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*
