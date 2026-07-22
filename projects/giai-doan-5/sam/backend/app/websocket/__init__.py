@@ -1,1 +1,0 @@
-"""WebSocket handling for SAM."""
