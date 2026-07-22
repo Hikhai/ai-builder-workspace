@@ -88,32 +88,22 @@
 - Việc tiếp theo: Giai đoạn 4, Buổi 1 — HTML/CSS cơ bản
 
 ### Giai đoạn 4 — Buổi 1: HTML/CSS cơ bản (ôn lại)
-- Đã hoàn thành: ôn HTML/CSS cơ bản (thẻ, class, flexbox), làm trang profile card tĩnh (tên, giới thiệu, danh sách kỹ năng ngang) qua 3 vòng chỉnh sửa
-- Tự phát hiện qua nhắc nhở: text-align: center (căn chữ) khác với margin: auto (căn cả khối) — 2 khái niệm dễ nhầm khi mới ôn lại
-- Học lại: justify-content/align-items chỉ có tác dụng trên phần tử là flex container, đặt nhầm trên phần tử con không chứa gì thêm sẽ vô tác dụng (liên hệ bài học "dead code" ở Python)
+- Đã hoàn thành: ôn HTML/CSS cơ bản (thẻ, class, flexbox), làm trang profile card tĩnh qua 3 vòng chỉnh sửa
+- Tự phát hiện qua nhắc nhở: text-align: center (căn chữ) khác với margin: auto (căn cả khối)
+- Học lại: justify-content/align-items chỉ có tác dụng trên flex container, đặt nhầm trên phần tử con vô tác dụng (liên hệ bài học "dead code" ở Python)
 - Việc tiếp theo: Giai đoạn 4, Buổi 2 — JavaScript cơ bản
 
 ### Giai đoạn 4 — Buổi 2: JavaScript cơ bản (ôn lại)
 - Đã hoàn thành: ôn JS cơ bản (let/const, arrow function, DOM API, addEventListener), thêm nút "Thêm kỹ năng" động vào trang profile card
-- Tự áp dụng đúng nguyên tắc "truyền hàm như giá trị" đã học ở Python (addEventListener nhận tên hàm, không gọi bằng ()) sang ngôn ngữ mới
-- Học quy ước đặt tên camelCase của JS (khác snake_case quen thuộc từ Python)
+- Tự áp dụng đúng nguyên tắc "truyền hàm như giá trị" đã học ở Python sang JS
+- Học quy ước đặt tên camelCase của JS (khác snake_case của Python)
 - Việc tiếp theo: Giai đoạn 4, Buổi 3 — Backend API với Flask/FastAPI
 
 ### Giai đoạn 4 — Buổi 3: Backend API với FastAPI (hoàn thành Giai đoạn 4)
 - Đã hoàn thành: xây API POST /trich-xuat, tái sử dụng thành công logic trich_xuat() từ Giai đoạn 3 vào kiến trúc backend mới
-- Tự phát hiện lỗi thiết kế route: dùng GET + tham số URL thay vì POST + body — đã sửa đúng, hiểu được lý do bản chất (GET để lấy dữ liệu, POST để gửi dữ liệu xử lý; tiếng Việt có dấu không phù hợp nhét vào URL)
-- Học Pydantic model để validate tự động dữ liệu đầu vào của request
-- Sửa xử lý lỗi: từ "return None" âm thầm (HTTP 200 kèm null) sang "raise HTTPException" đúng chuẩn (HTTP 500 kèm thông báo rõ ràng) — tự kiểm chứng bằng cách cố tình gây lỗi model rồi khôi phục lại
+- Tự phát hiện lỗi thiết kế route: dùng GET + tham số URL thay vì POST + body — đã sửa đúng
+- Học Pydantic model để validate tự động dữ liệu đầu vào
+- Sửa xử lý lỗi: từ "return None" âm thầm sang "raise HTTPException" đúng chuẩn (HTTP 500 kèm thông báo rõ ràng)
 - Việc tiếp theo: Giai đoạn 5 — Dự án lớn: AI Hub (web app hướng cộng đồng người dùng)
-
-### Giai đoạn 5 — Pivot & Spec: AI Đồng Hành Học Tập
-- Người học tiết lộ dự án thật (khác "AI Hub multi-model" đã bàn trước đó): ứng dụng AI mentor cá nhân hóa giúp học tập/phát triển bản thân, giải quyết vấn đề "nhiều kiến thức nhưng ít người học đến cùng" — không phải nền tảng bán khóa học
-- Đã chốt spec MVP: người dùng đầu tiên là chính người học, thử nghiệm với việc học tiếng Anh; onboarding qua hội thoại tự nhiên (AI trích xuất hồ sơ), tạo lộ trình cá nhân hóa, phiên học có ghi nhận tiến độ, AI nhớ qua các lần mở app
-- Insight quan trọng: bộ workspace file (profile/progress/knowledge) của chính khóa học này là 1 phiên bản thủ công của ý tưởng "AI nhớ tiến độ" — dùng làm cảm hứng thiết kế bộ nhớ MVP (dữ liệu có cấu trúc, không cần vector DB/RAG ngay)
-- Đã nghiên cứu tham khảo kiến trúc từ repo DeepTutor (HKUDS) — học theo mô hình tách Tools/Capabilities để dễ mở rộng
-- Đã chốt tech stack: FastAPI + WebSocket (backend), SQLite + SQLAlchemy ORM (database), React + Vite + Framer Motion (frontend)
-- Đã chốt cách làm việc: backend/database người học tự code (AI review), frontend React để AI viết nhiều hơn, người học học qua đọc/review trong lúc xây dựng thật
-- Việc tiếp theo: thiết kế chi tiết database schema (SQLAlchemy models)
-
 ---
 *Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*
