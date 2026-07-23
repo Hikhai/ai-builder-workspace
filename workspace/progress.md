@@ -105,5 +105,38 @@
 - Học Pydantic model để validate tự động dữ liệu đầu vào
 - Sửa xử lý lỗi: từ "return None" âm thầm sang "raise HTTPException" đúng chuẩn (HTTP 500 kèm thông báo rõ ràng)
 - Việc tiếp theo: Giai đoạn 5 — Dự án lớn: AI Hub (web app hướng cộng đồng người dùng)
+
+### Giai đoạn 5 — Đổi ý tưởng dự án: AI Learning Studio
+* **Bối cảnh:** Người học quyết định không làm AI Hub nữa, chuyển sang ý tưởng khác: Web app tự tạo khóa học bằng AI + AI đồng hành xuyên suốt quá trình học *(kết hợp AI + Duolingo + Notion)*.
+* **Việc tiếp theo:** Viết Ý tưởng + Spec cho dự án mới.
+
+---
+
+### Giai đoạn 5 — Buổi A: Ý tưởng + Spec cho AI Learning Studio
+
+* **Đã hoàn thành:**
+  * **Chốt Ý tưởng:** Người dùng nhập chủ đề $\rightarrow$ AI hỏi đủ khung 6 phần (`Role` / `Task` / `Context` / `Constraints` / `Success Criteria` / `Exit Criteria`) $\rightarrow$ sinh roadmap tổng quan $\rightarrow$ sinh nội dung từng lesson khi học tới đó, đúng trình tự $\rightarrow$ người học sửa/tổ chức lại được nội dung, có ghi chú riêng $\rightarrow$ AI đồng hành, nhớ giữa các lần mở app.
+  * Viết xong **Spec đầy đủ 5 phần** (*Mục tiêu, Input/Output, Quy tắc nghiệp vụ, Trường hợp biên & lỗi, Tiêu chí hoàn thành*), chốt qua nhiều vòng chỉnh sửa.
+* **Quyết định nghiệp vụ quan trọng:**
+  1. Chỉ sinh nội dung lesson đúng trình tự (không sinh trước lesson chưa tới lượt).
+  2. Sinh lỗi giữa chừng thì bỏ hết làm lại, không giữ phần dở.
+  3. Xóa lesson đã có nội dung luôn hỏi xác nhận.
+* **Việc tiếp theo:** Buổi B — Thiết kế.
+
+---
+
+### Giai đoạn 5 — Buổi B: Thiết kế cho AI Learning Studio
+
+* **Đã hoàn thành thiết kế 4 phần:**
+  1. **Kiến trúc tổng quan 3 tầng:** `Frontend` (HTML/CSS/JS) $\rightarrow$ `Backend` (FastAPI) $\rightarrow$ `SQLite` + `LLM API`.
+  2. **Thiết kế dữ liệu:** 4 bảng `khoa_hoc` / `chuong` / `lesson` / `bai_tap_da_lam` (quan hệ 1-nhiều).
+  3. **Danh sách API endpoint:** Khớp từng quy tắc nghiệp vụ trong spec.
+  4. **Prompt design cho 3 lời gọi AI:** Sinh roadmap, sinh nội dung lesson, review bài làm.
+* **Quyết định thiết kế:**
+  * Đánh lại số thứ tự (`thu_tu`) toàn bộ lesson phía sau khi chèn lesson mới vào giữa (thay vì số thập phân).
+  * Tách bảng riêng lưu lịch sử làm bài tập.
+  * **Đổi nhà cung cấp gọi LLM:** Từ OpenRouter sang **NVIDIA API** (model `z-ai/glm-5.2`), giữ không streaming cho MVP để giữ đơn giản.
+* **Nguyên tắc quan trọng chốt lại:** Rule nghiệp vụ *"chỉ sinh đúng lượt"* phải chặn bằng code Python trước khi gọi AI, không giao cho AI tự tuân thủ.
+* **Việc tiếp theo:** Giai đoạn 5, Buổi C — Xây dựng AI Learning Studio.
 ---
 *Mỗi mục mới thêm vào cuối file, không xóa lịch sử cũ — để thấy được cả quá trình.*

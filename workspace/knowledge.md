@@ -156,5 +156,57 @@ Model có thể cần gọi tool nhiều lần trong 1 câu hỏi. Dùng vòng l
 
 ## Báo lỗi đúng chuẩn HTTP
 `raise HTTPException(status_code=500, detail="...")` thay vì `return None` — tránh lỗi âm thầm (HTTP 200 kèm null đánh lừa người gọi).
+
+# Giai đoạn 5 — Dự án lớn: AI Learning Studio
+
+### 1. Thiết kế kiến trúc 3 tầng cho app cá nhân
+`Frontend (trình duyệt)` → `Backend (xử lý logic, gọi AI)` → `Data + LLM API`
+
+* **Lựa chọn:** Chọn **SQLite** thay vì PostgreSQL/DB server riêng vì đây là app chạy local cho 1 người dùng.
+* **Nguyên tắc:** Dùng công cụ nặng hơn nhu cầu thực tế là vi phạm nguyên tắc *"không thêm cấu trúc khi chưa cần"*, dù SQLite hay PostgreSQL đều là kỹ thuật đã có sẵn, chọn sai loại vẫn là một dạng *over-engineering*.
+
+---
+
+### 2. Thiết kế dữ liệu quan hệ nhiều cấp
+* Một khóa học chứa nhiều chương, mỗi chương chứa nhiều lesson, mỗi lesson có thể có nhiều lần làm bài tập.
+* **Mô hình:** Quan hệ 1-nhiều lồng nhau qua các bảng: `khoa_hoc` → `chuong` → `lesson` → `bai_tap_da_lam`.
+* Mỗi bảng con giữ khóa ngoại trỏ về bảng cha.
+
+---
+
+### 3. Duy trì thứ tự có thể chèn giữa (`thu_tu`)
+* Khi 1 danh sách có thứ tự (chương/lesson) cần cho phép chèn phần tử mới vào giữa, cách đơn giản nhất cho MVP là **đánh số nguyên tăng dần và đánh lại toàn bộ số thứ tự phía sau mỗi khi chèn** (thay vì dùng số thập phân/khoảng cách để tránh đụng vào phần tử khác).
+* Đơn giản hơn, dễ hiểu hơn, phù hợp quy mô dữ liệu nhỏ của app cá nhân.
+
+---
+
+### 4. Business rule quan trọng phải enforce bằng code, không giao cho AI
+* Với các ràng buộc nghiệp vụ có tính bắt buộc (ví dụ: *"chỉ được sinh nội dung lesson đúng trình tự"*), phải kiểm tra bằng code Python trước khi gọi AI:
+  ```python
+  if lesson.trang_thai != dung_luot:
+      raise HTTPException(...)
+
+```
+
+* **Lý do:** Không viết vào prompt rồi kỳ vọng AI tự từ chối đúng. Đây là hệ quả trực tiếp của bài học Giai đoạn 3: LLM suy luận ngôn ngữ, không đảm bảo tuân thủ quy tắc cứng một cách chắc chắn.
+
+---
+
+### 5. Thiết kế prompt theo từng mục đích riêng biệt
+
+* Mỗi lời gọi AI trong hệ thống nên có **System Prompt** giới hạn rõ phạm vi (ví dụ: *"chỉ sinh đúng 1 lesson được chỉ định, không vượt phạm vi"*).
+* Yêu cầu **Structured Output (JSON)** có cấu trúc cố định để code parse được trực tiếp, không phải tách chữ từ văn xuôi tự do.
+* Vẫn cần bọc `try / except json.JSONDecodeError` như đã học ở Giai đoạn 3, vì model đôi khi trả thêm chữ thừa dù đã dặn.
+
+---
+
+### 6. Rò rỉ API key trong hội thoại/tin nhắn
+
+* Một API key dán trực tiếp ra ngoài (kể cả trong đoạn chat riêng) nên được coi là **đã bị lộ**.
+* **Hành động đúng:** Thu hồi (Revoke) / tạo key mới ngay tại nơi cấp key, không phải chỉ xóa nội dung đã dán đi.
+
+```
+
+
 ---
 *Mỗi khái niệm mới thêm vào cuối phần giai đoạn tương ứng, không xóa cái cũ — đây là kho kiến thức tích lũy dần, dùng để ôn lại khi quên.*
